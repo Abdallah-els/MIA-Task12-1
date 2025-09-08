@@ -11,4 +11,15 @@
   <!-- Launch RViz with preconfigured setup -->
   <node pkg="rviz" type="rviz" name="rviz_Elrobot" args="-d $(find task12_1)/config/Elrobot.rviz"/>
 
+  <!-- gazebo -->
+  <!-- Load robot -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find task12_1)/urdf/design.urdf.xacro'" />
+
+  <!-- Spawn robot in Gazebo -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+        args="-param robot_description -urdf -model my_robot" />
+
+  <!-- Start Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
 </launch>

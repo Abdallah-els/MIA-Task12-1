@@ -26,6 +26,17 @@
         <color rgba="0.8 0 0 1"/>
       </material>
     </visual>
+
+    <collision>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
   </link>
 
   <joint name="world_to_base" type="fixed">
@@ -44,6 +55,17 @@
         <color rgba="0.8 0 0 1"/>
       </material>
     </visual>
+
+    <collision>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
   </link>
 
   <joint name="base_to_upper" type="fixed">
@@ -63,7 +85,19 @@
           <color rgba="0 0 0 1"/>
         </material>
       </visual>
+
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="1.0"/> <!-- any values -->
+        <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
     </link>
+
 
     <joint name="${name}_joint" type="continuous">
       <parent link="base_link"/>
@@ -90,6 +124,17 @@
           <color rgba="1 1 0 1"/>
         </material>
       </visual>
+
+      <collision>
+        <geometry>
+          <cylinder radius="${spacer_radius}" length="${spacer_thickness}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="1.0"/> <!-- any values -->
+        <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
     </link>
 
     <joint name="${name}_joint" type="fixed">
@@ -114,6 +159,18 @@
         <color rgba="0.1 0.1 0.1 1"/>
       </material>
     </visual>
+
+    <collision>
+      <geometry>
+        <cylinder radius="${lidar_radius}" length="${lidar_thickness}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+
   </link>
 
   <joint name="lidar_to_upper" type="fixed">
