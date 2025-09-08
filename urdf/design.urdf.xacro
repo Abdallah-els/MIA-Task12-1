@@ -7,10 +7,16 @@
   <xacro:property name="body_height" value="0.01"/>
   <xacro:property name="wheel_radius" value="0.04"/>
   <xacro:property name="wheel_thickness" value="0.03"/>
+  <xacro:property name="spacer_radius" value="0.005"/>
+  <xacro:property name="spacer_thickness" value="0.1"/>
+  <xacro:property name="lidar_radius" value="0.06"/>
+  <xacro:property name="lidar_thickness" value="0.06"/>
+  
 
 <!-- Main body -->
   <link name="world"/>
   
+  <!-- base -->
   <link name="base_link">
     <visual>
       <geometry>
@@ -26,6 +32,24 @@
     <parent link="world"/>
     <child link="base_link"/>
     <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+
+  <!-- upper -->
+  <link name="upper_link">
+    <visual>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_upper" type="fixed">
+    <parent link="base_link"/>
+    <child link="upper_link"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
   </joint>
 
   <!-- Wheel macro -->    <!-- macro is like a template -->
@@ -50,9 +74,52 @@
   </xacro:macro>
 
   <!-- Add four wheels -->
-  <xacro:wheel name="f_l"  x="0.09"  y="0.11" z="0.0"/>
-  <xacro:wheel name="f_r" x="0.09"  y="-0.11" z="0.0"/>
-  <xacro:wheel name="b_l"   x="-0.09" y="0.11" z="0.0"/>
-  <xacro:wheel name="b_r"  x="-0.09" y="-0.11" z="0.0"/>
+  <xacro:wheel name="fl_wheel"  x="0.09"  y="0.11"  z="0.0"/>
+  <xacro:wheel name="fr_wheel"  x="0.09"  y="-0.11" z="0.0"/>
+  <xacro:wheel name="bl_wheel"  x="-0.09" y="0.11"  z="0.0"/>
+  <xacro:wheel name="br_wheel"  x="-0.09" y="-0.11" z="0.0"/>
+
+  <!-- spacers macro -->   
+  <xacro:macro name="spacer" params="name x y z">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder radius="${spacer_radius}" length="${spacer_thickness}"/>
+        </geometry>
+        <material name="yellow">
+          <color rgba="1 1 0 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Add four spacers -->
+  <xacro:spacer name="fl_spacer" x="0.11"  y="0.08"  z="0.05"/>
+  <xacro:spacer name="fr_spacer" x="0.11"  y="-0.08" z="0.05"/>
+  <xacro:spacer name="bl_spacer" x="-0.11" y="0.08"  z="0.05"/>
+  <xacro:spacer name="br_spacer" x="-0.11" y="-0.08" z="0.05"/>
+
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <cylinder radius="${lidar_radius}" length="${lidar_thickness}"/>
+      </geometry>
+      <material name="gary">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="lidar_to_upper" type="fixed">
+    <parent link="upper_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0.04 0 0.03" rpy="0 0.1 0"/>
+  </joint>
 
 </robot>
