@@ -1,0 +1,14 @@
+<launch>
+  <!-- Loads the robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find task12_1)/urdf/design.urdf.xacro'" />
+
+  <!-- Publishes joint states -->
+  <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher"/>
+
+  <!-- Publish TF transforms from URDF -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Launch RViz with preconfigured setup -->
+  <node pkg="rviz" type="rviz" name="rviz_Elrobot" args="-d $(find task12_1)/config/Elrobot.rviz"/>
+
+</launch>
