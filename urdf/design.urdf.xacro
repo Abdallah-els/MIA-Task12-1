@@ -34,8 +34,8 @@
     </collision>
 
     <inertial>
-      <mass value="1.0"/>
-      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.0017" iyy="0.00375" izz="0.0054" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
 
@@ -63,8 +63,8 @@
     </collision>
 
     <inertial>
-      <mass value="1.0"/>
-      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.0017" iyy="0.00375" izz="0.0054" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
 
@@ -93,8 +93,8 @@
       </collision>
 
       <inertial>
-        <mass value="1.0"/> <!-- any values -->
-        <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+        <mass value="0.025"/> <!-- any values -->
+        <inertia ixx="0.00002" iyy="0.00011" izz="0.00011" ixy="0" ixz="0" iyz="0"/>
       </inertial>
     </link>
 
@@ -132,8 +132,8 @@
       </collision>
 
       <inertial>
-        <mass value="1.0"/> <!-- any values -->
-        <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+        <mass value="0.0125"/> <!-- any values -->
+        <inertia ixx="0.000105" iyy="0.000105" izz="0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
     </link>
 
@@ -167,8 +167,8 @@
     </collision>
 
     <inertial>
-      <mass value="1.0"/>
-      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.000225" iyy="0.000225" izz="0.00009" ixy="0" ixz="0" iyz="0"/>
     </inertial>
 
   </link>
@@ -176,7 +176,7 @@
   <joint name="lidar_to_upper" type="fixed">
     <parent link="upper_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0.04 0 0.03" rpy="0 0.1 0"/>
+    <origin xyz="0.06 0 0.03" rpy="0 0.1 0"/>
   </joint>
 
 </robot>
